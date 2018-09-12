@@ -87,4 +87,6 @@ public class Units {
     {
         this.moves = moves;
     }  
+    
+    //public void checkTerrain(); //This method will check what type of terrain the unit is on and apply the correct multiplyers
 }
