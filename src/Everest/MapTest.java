@@ -3,15 +3,15 @@
  */
 package Everest;
 
-import static org.junit.Assert.assertEquals;
+import student.TestCase;
 
 /**
  * @author juddc
- * @version 09/12/18
+ * @version 09/16/18
  *
- *          Tests the complex methods in the Map Class
+ *          Description
  */
-public class MapTest {
+public class MapTest extends TestCase {
     private Map map;
 
     public void setUp()
@@ -19,11 +19,23 @@ public class MapTest {
 	map = new Map(5, 5);
     }
 
-    public void testTopBorders()
+    public void testTopBorder()
     {
-	for (int i = 0; i < map.getMap().length; i++)
-	{
-	    //assertEquals(test, map.getMap()[i][0]);
-	}
+	Ice test = new Ice();
+	assertEquals(test, map.getMap()[0][0]);
     }
+
+    public void testBotBorder()
+    {
+	Ice test = new Ice();
+	assertEquals(test, map.getMap()[0][map.getHeight() - 1]);
+    }
+
+    public void testEquals()
+    {
+	Ice test = new Ice();
+	Ice test2 = new Ice();
+	assertEquals(test, test2);
+    }
+
 }

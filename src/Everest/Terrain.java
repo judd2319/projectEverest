@@ -23,9 +23,9 @@ public class Terrain extends Map {
     private boolean groundAccess;
     private boolean airAccess;
     private boolean navalAccess;
-    
-    private int xLoc;
-    private int yLoc;
+
+    //private int xLoc;
+    //private int yLoc;
 
     /**
      * Default Constructor, used for grasslands (the default type of terrain)
@@ -210,36 +210,44 @@ public class Terrain extends Map {
 	this.trade = trade;
     }
 
-    /**
-     * @return the xLoc
-     */
-    public int getxLoc()
-    {
-	return xLoc;
-    }
+    
 
     /**
-     * @param xLoc the xLoc to set
+     * Determines if two terrain objects are equal
+     * 
+     * @parm other is the object being tested against this terrain
      */
-    public void setxLoc(int xLoc)
+    public boolean equals(Object other)
     {
-	this.xLoc = xLoc;
-    }
-
-    /**
-     * @return the yLoc
-     */
-    public int getyLoc()
-    {
-	return yLoc;
-    }
-
-    /**
-     * @param yLoc the yLoc to set
-     */
-    public void setyLoc(int yLoc)
-    {
-	this.yLoc = yLoc;
+	if (other == this)
+	{
+	    return true;
+	}
+	if (other == null)
+	{
+	    return false;
+	}
+	if (this.getClass() == other.getClass())
+	{
+	    Terrain terrain = (Terrain) other;
+	    if (this.getAttackMult() - terrain.getAttackMult() <= 1E-14
+		    && this.getDefenseMult() - terrain.getDefenseMult() <= 1E-14
+		    && this.getTrade() - terrain.getTrade() <= 1E-14
+		    && this.getProduction() - terrain.getProduction() <= 1E-14
+		    && this.getFood() - terrain.getFood() <= 1E-14 && this.getCulture() - terrain.getCulture() <= 1E-14
+		    && this.getAirAccess() == terrain.getAirAccess()
+		    && this.getGroundAccess() == terrain.getGroundAccess()
+		    && this.getNavalAccess() == terrain.getNavalAccess())
+	    {
+		return true;
+	    } else
+	    {
+		return false;
+	    }
+	} else
+	{
+	    return false;
+	}
     }
 
 }

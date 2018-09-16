@@ -4,7 +4,6 @@
 package Everest;
 
 import java.util.*;
-import student.TestableRandom;
 
 /**
  * @author juddc
@@ -22,9 +21,9 @@ public class Map {
      */
     public Map()
     {
-	map = new ArrayList[2000][1000];
-	width = 2000;
-	height = 1000;
+	map = new ArrayList[20][10];
+	width = 20;
+	height = 10;
 	randomizeMap();
     }
 
@@ -50,9 +49,8 @@ public class Map {
      */
     private void randomizeMap()
     {
-	TestableRandom random = new TestableRandom();
-	int randomTerrain = random.nextInt(7);
-	Terrain square = new Terrain();
+	int randomTerrain = (int) (Math.random() * 7);
+	Terrain square = new Grassland();
 	for (int i = 0; i < width; i++)
 	{
 	    for (int j = 0; j < height; j++)
@@ -61,17 +59,13 @@ public class Map {
 		if (j == 0 || j == height - 1)
 		{
 		    map[i][j].set(0, new Ice());
-		    break;
 		} else if (j == 1 || j == 2 || j == height - 2 || j == height - 3 || i == 1 || i == width - 2 || i == 0
 			|| i == width - 1)
 		{
 		    map[i][j].set(0, new Sea(i, j, 2));
-		    break;
-		} 
-		else
+		} else
 		{
 		    //Sets the squares in the middle of the map to be random
-		    randomTerrain = random.nextInt(7);
 		    switch (randomTerrain)
 		    {
 		    case 0:
@@ -108,5 +102,21 @@ public class Map {
     public ArrayList<Map>[][] getMap()
     {
 	return map;
+    }
+
+    /**
+     * @return the height
+     */
+    public int getHeight()
+    {
+	return height;
+    }
+
+    /**
+     * @return the width of the map
+     */
+    public int getWidth()
+    {
+	return width;
     }
 }
