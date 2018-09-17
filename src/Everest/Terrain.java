@@ -44,7 +44,7 @@ public class Terrain extends Map {
     }
 
     /**
-     * Paraterized constructor for the other types of terrain
+     * Parameterized constructor for the other types of terrain
      * 
      * @param attack  the attack multiplier
      * @param defense the defense multiplier

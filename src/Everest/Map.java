@@ -17,13 +17,13 @@ public class Map {
     private int height;
 
     /**
-     * Default Constructor, sets the map width to 2000 and height to 1000
+     * Default Constructor, sets the map width to 20 and height to 10
      */
     public Map()
     {
-	map = new ArrayList[20][10];
 	width = 20;
 	height = 10;
+	map = new ArrayList[width][height];
 	randomizeMap();
     }
 
@@ -49,7 +49,8 @@ public class Map {
      */
     private void randomizeMap()
     {
-	int randomTerrain = (int) (Math.random() * 7);
+	int randomTerrain = (int) (Math.random() * 6);
+	int randomLandSea = (int) (Math.random() * 2);
 	Terrain square = new Grassland();
 	for (int i = 0; i < width; i++)
 	{
@@ -59,34 +60,38 @@ public class Map {
 		if (j == 0 || j == height - 1)
 		{
 		    map[i][j].set(0, new Ice());
-		} else if (j == 1 || j == 2 || j == height - 2 || j == height - 3 || i == 1 || i == width - 2 || i == 0
-			|| i == width - 1)
+		} else if (j == 1 || j == 2 || j == height - 2 || j == height - 3)
 		{
-		    map[i][j].set(0, new Sea(i, j, 2));
+		    map[i][j].set(0, new Sea(i, j));
 		} else
 		{
 		    //Sets the squares in the middle of the map to be random
-		    switch (randomTerrain)
+		    switch (randomLandSea)
 		    {
 		    case 0:
-			square = new Hill();
+			switch (randomTerrain)
+			    {
+			    case 0:
+				square = new Hill();
+				break;
+			    case 1:
+				square = new Desert();
+				break;
+			    case 2:
+				square = new Plain();
+				break;
+			    case 3:
+				square = new Forest();
+				break;
+			    case 4:
+				square = new Grassland();
+				break;
+			    case 5:
+				square = new Mountain();
+				break;
+			    }
 			break;
 		    case 1:
-			square = new Desert();
-			break;
-		    case 2:
-			square = new Plain();
-			break;
-		    case 3:
-			square = new Forest();
-			break;
-		    case 4:
-			square = new Grassland();
-			break;
-		    case 5:
-			square = new Mountain();
-			break;
-		    case 6:
 			square = new Sea(i, j);
 			break;
 		    }
